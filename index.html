@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <!-- 设置视口，确保在移动设备上正确显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 网页标题，显示在浏览器标签上 -->
+    <title>天宫空间站 - 互动虚拟漫游体验</title>
+    <!-- 链接到CSS样式表 -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 设置网站图标 -->
+    <link rel="icon" href="images/ui/favicon.ico" type="image/x-icon">
+    <!-- SEO描述，用于搜索引擎优化 -->
+    <meta name="description" content="探索中国天宫空间站的互动虚拟漫游体验，参观天和核心舱、问天实验舱和梦天实验舱">
+</head>
+<body>
+    <!-- 启动屏幕 - 用户首次访问时显示的欢迎界面 -->
+    <div class="launch-screen" id="launchScreen">
+        <!-- 加载动画，可以在js/main.js中控制显示/隐藏 -->
+        <div class="loading-animation"></div>
+        <h1>天宫空间站</h1>
+        <p>360°互动虚拟漫游体验</p>
+        <p>准备踏上探索中国空间站的奇妙旅程，通过这个互动体验，您将能够身临其境地参观天和核心舱、问天实验舱和梦天实验舱，了解中国航天员的工作与生活环境。</p>
+        <!-- 开始按钮，点击后会隐藏启动屏幕，显示主界面 -->
+        <button class="start-btn" id="startBtn">开始探索</button>
+    </div>
+
+    <!-- 主虚拟漫游容器 - 包含全景图和所有交互元素 -->
+    <div class="virtual-tour-container">
+        <!-- 全景图显示区域 - 背景图片会通过JavaScript动态设置 -->
+        <div class="tour-view" id="tourView"></div>
+        
+        <!-- 交互热点会通过JavaScript动态添加到这里 -->
+        
+        <!-- 信息弹窗 - 点击热点时显示详细信息 -->
+        <div class="info-popup" id="infoPopup">
+            <!-- 关闭按钮 -->
+            <button class="close-btn" id="closePopup">×</button>
+            <!-- 弹窗标题，由JavaScript动态更新 -->
+            <h3 id="popupTitle">信息标题</h3>
+            <!-- 弹窗内容区域，由JavaScript动态更新 -->
+            <div id="popupContent">
+                <p>详细信息将显示在这里...</p>
+            </div>
+        </div>
+        
+        <!-- 导航控制 - 用于在全景图之间切换 -->
+        <div class="nav-controls">
+            <!-- 上一个全景图按钮 -->
+            <button class="nav-btn" id="prevBtn">上一个</button>
+            <!-- 下一个全景图按钮 -->
+            <button class="nav-btn" id="nextBtn">下一个</button>
+        </div>
+        
+        <!-- 全景导航点 - 显示当前模块中的全景图列表，由JavaScript动态生成 -->
+        <div class="panorama-nav" id="panoramaNav"></div>
+        
+        <!-- 界面覆盖层 - 包含模块选择器和信息面板 -->
+        <div class="interface-overlay">
+            <!-- 模块选择器 - 用于切换不同的空间站舱段 -->
+            <div class="overlay-element module-selector">
+                <h4>选择模块</h4>
+                <!-- 模块按钮，data-module属性用于JavaScript识别选择的模块 -->
+                <!-- active类表示当前选中的模块 -->
+                <button class="module-btn active" data-module="tianhe">天和核心舱</button>
+                <button class="module-btn" data-module="wentian">问天实验舱</button>
+                <button class="module-btn" data-module="mengtian">梦天实验舱</button>
+                <button class="module-btn" data-module="shenzhou">神舟飞船</button>
+            </div>
+            
+            <!-- 信息面板 - 显示当前位置和描述 -->
+            <div class="overlay-element info-panel">
+                <!-- 当前位置标题，由JavaScript动态更新 -->
+                <h4 id="currentLocation">当前位置: 天和核心舱</h4>
+                <!-- 位置描述，由JavaScript动态更新 -->
+                <p id="locationDescription">中国空间站的管理与控制中心，为航天员提供生活区域和工作平台。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版权信息 -->
+    <footer class="copyright">
+        <p>© 2025 天宫空间站虚拟漫游项目</p>
+    </footer>
+
+    <!-- 脚本文件 -->
+    <!-- 先加载数据文件，因为main.js依赖于data.js中的数据 -->
+    <script src="js/data.js"></script>
+    <!-- 主要的JavaScript逻辑文件 -->
+    <script src="js/main.js"></script>
+</body>
+</html>
