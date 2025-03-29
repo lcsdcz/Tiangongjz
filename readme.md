@@ -152,5 +152,5 @@ newModule: {
 
 如有问题或建议，请通过以下方式联系：
 
-- 电子邮件：example@email.com
-- GitHub Issue: https://github.com/your-username/tiangong-virtual-tour/issues
+- 电子邮件：
+- GitHub Issue: 
