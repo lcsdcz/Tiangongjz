@@ -235,6 +235,7 @@ function switchModule(moduleName) {
     createPanoramaNav(); // 重新创建导航点
 }
 
+
 /**
  * 创建漫游控制面板
  * 创建包含各种控制按钮的面板
@@ -483,6 +484,137 @@ function setupWelcomeMessage() {
         }, 1000); // 延迟1秒
     });
 }
+/**
+ * 初始化虚拟漫游
+ * 这个函数在页面加载完成后调用，设置整个虚拟漫游系统
+ */
+function initTour() {
+    // 更新视图 - 显示初始全景图
+    updateView();
+    
+    // 创建全景导航点 - 根据当前模块创建导航点
+    createPanoramaNav();
+    
+    // 隐藏现有热点 - 清除可能存在的旧热点
+    hideHotspots();
+    
+    // 创建热点 - 在当前全景图上添加交互热点
+    createHotspots();
+    
+    // 添加控制面板 - 创建用户界面控制按钮
+    createTourControls();
+    
+    // 添加键盘导航 - 设置键盘快捷键
+    setupKeyboardNavigation();
+    
+    // 显示欢迎信息 - 设置启动屏幕和欢迎弹窗
+    setupWelcomeMessage();
+    
+    // 记录访问 - 记录用户访问信息（仅控制台输出）
+    logVisit();
+}
+
+/**
+ * 创建模块选择按钮功能
+ * 点击模块按钮后，开始自由探索
+ */
+function createModuleSelection() {
+    const moduleBtns = document.querySelectorAll('.module-btn'); // 获取所有模块按钮
+    
+    // 为每个模块按钮添加点击事件
+    moduleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const moduleName = btn.dataset.module; // 获取模块名
+            switchModule(moduleName); // 切换到对应模块的内容
+        });
+    });
+}
+
+/**
+ * 切换模块
+ * 切换到指定的空间站模块
+ * @param {string} moduleName - 模块名称（如'tianhe', 'wentian'等）
+ */
+function switchModule(moduleName) {
+    // 如果正在自动旋转，先停止
+    if (isRotating) {
+        toggleRotation();
+    }
+    
+    currentModule = moduleName; // 更新当前模块
+    currentPanoramaIndex = 0; // 重置为模块的第一个全景图
+    
+    // 高亮当前选中的模块按钮
+    const moduleBtns = document.querySelectorAll('.module-btn');
+    moduleBtns.forEach(btn => {
+        if (btn.dataset.module === moduleName) {
+            btn.classList.add('active'); // 当前按钮添加活动状态
+        } else {
+            btn.classList.remove('active'); // 其他按钮移除活动状态
+        }
+    });
+    
+    // 更新视图和导航点
+    updateView(); // 更新视图，展示模块的全景图
+    createPanoramaNav(); // 创建该模块的导航点，便于切换全景图
+}
+
+/**
+ * 设置欢迎信息
+ * 设置启动屏幕和初始欢迎弹窗
+ */
+function setupWelcomeMessage() {
+    // 添加开始按钮点击事件
+    startBtn.addEventListener('click', () => {
+        // 启动屏幕淡出
+        launchScreen.style.opacity = '0'; // 设置透明度为0
+        setTimeout(() => {
+            launchScreen.style.display = 'none'; // 隐藏启动屏幕
+            
+            // 短暂延迟后显示欢迎信息
+            setTimeout(() => {
+                popupTitle.textContent = "欢迎来到天宫空间站"; // 设置弹窗标题
+                // 设置欢迎信息内容
+                popupContent.innerHTML = `
+                    <p>欢迎登上中国的天宫空间站！这个虚拟导览将带您探索中国航天员工作和生活的太空家园。</p>
+                    <p>空间站由天和核心舱、问天实验舱和梦天实验舱组成，是中国自主研发和建造的国家级太空实验室。</p>
+                    <p>点击场景中的热点标记（+）可以了解更多详细信息，使用导航按钮可以在不同区域间切换。</p>
+                    <p>祝您在太空之旅中收获知识与乐趣！</p>
+                    <button id="closeWelcome" class="nav-btn">开始探索</button>
+                `;
+                infoPopup.classList.add('active'); // 显示欢迎弹窗
+                
+                // 添加关闭按钮事件
+                document.getElementById('closeWelcome').addEventListener('click', () => {
+                    infoPopup.classList.remove('active'); // 关闭弹窗
+                });
+                                 // 添加×按钮事件
+                                 document.getElementById('closePopup').addEventListener('click', () => {
+                                    infoPopup.classList.remove('active'); // 关闭弹窗
+                                });
+            }, 1500); // 延迟1.5秒
+        }, 1000); // 延迟1秒
+    });
+}
+
+/**
+ * 记录访问信息
+ * 在实际项目中可以连接到分析系统，这里仅在控制台输出
+ */
+function logVisit() {
+    console.log('虚拟漫游已启动', {
+        timestamp: new Date().toISOString(), // 记录时间戳
+        startModule: currentModule // 记录起始模块
+    });
+}
+
+/**
+ * 页面加载完成后初始化漫游
+ */
+window.addEventListener('load', () => {
+    initTour();
+    createModuleSelection(); // 初始化模块选择功能
+});
 
 /**
  * 记录访问信息
