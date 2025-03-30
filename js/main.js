@@ -475,6 +475,10 @@ function setupWelcomeMessage() {
                 document.getElementById('closeWelcome').addEventListener('click', () => {
                     infoPopup.classList.remove('active'); // 关闭弹窗
                 });
+                 // 添加×按钮事件
+                 document.getElementById('closePopup').addEventListener('click', () => {
+                    infoPopup.classList.remove('active'); // 关闭弹窗
+                });
             }, 1500); // 延迟1.5秒
         }, 1000); // 延迟1秒
     });
