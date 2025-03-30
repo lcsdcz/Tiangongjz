@@ -294,6 +294,58 @@ function setupKeyboardNavigation() {
         }
     });
 }
+/**
+ * 设置鼠标点击功能，绑定"上一个"和"下一个"按钮的点击事件
+ */
+function setupClickNavigation() {
+    // 上一个全景图按钮点击事件
+    prevBtn.addEventListener('click', () => {
+        prevPanorama(); // 切换到上一个全景图
+    });
+
+    // 下一个全景图按钮点击事件
+    nextBtn.addEventListener('click', () => {
+        nextPanorama(); // 切换到下一个全景图
+    });
+}
+
+/**
+ * 更新漫游视图
+ * 根据当前选择的模块和全景图索引更新显示内容
+ */
+function updateView() {
+    const module = tourData[currentModule]; // 获取当前模块数据
+    const panorama = module.panoramas[currentPanoramaIndex]; // 获取当前全景图数据
+    
+    // 更新背景图片 - 设置全景图为背景
+    tourView.style.backgroundImage = `url(${panorama.image})`;
+    
+    // 更新信息面板 - 显示当前位置和描述
+    currentLocation.textContent = `当前位置: ${module.name} - ${panorama.name}`;
+    locationDescription.textContent = panorama.description;
+    
+    // 更新导航点 - 高亮当前全景图对应的导航点
+    updatePanoramaNav();
+    
+    // 更新热点 - 移除旧热点并创建新热点
+    hideHotspots();
+    createHotspots();
+    
+    // 添加过渡动画 - 使场景切换更平滑
+    tourView.classList.add('transitioning');
+    setTimeout(() => {
+        tourView.classList.remove('transitioning');
+    }, 1000); // 1秒后移除过渡效果
+}
+
+/**
+ * 页面加载完成后初始化漫游
+ */
+window.addEventListener('load', () => {
+    initTour();
+    createModuleSelection(); // 初始化模块选择功能
+    setupClickNavigation(); // 设置点击事件实现导航功能
+});
 
 /**
  * 切换自动旋转
