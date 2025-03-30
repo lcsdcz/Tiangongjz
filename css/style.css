@@ -461,3 +461,36 @@ body {
     white-space: nowrap;
     border-width: 0;
 }
+/* 新增跳过视频按钮样式 */
+.skip-video-btn {
+    position: absolute; /* 绝对定位 */
+    top: 20px; /* 距离页面顶部20px */
+    right: 20px; /* 距离页面右边20px */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    background-color: rgba(0, 0, 0, 0.7); /* 背景颜色 */
+    color: var(--light); /* 字体颜色 */
+    border: none; /* 无边框 */
+    border-radius: 25px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手形光标 */
+    transition: background-color 0.3s ease; /* 添加渐变过渡效果 */
+    z-index: 30; /* 确保按钮在最上层 */
+}
+
+.skip-video-btn:hover {
+    background-color: var(--accent); /* 悬停时的背景颜色 */
+    transform: scale(1.1); /* 悬停时按钮放大 */
+}
+
+.skip-video-btn:active {
+    transform: scale(0.98); /* 按钮点击时缩小 */
+}
+
+/* 现有的 intro-video-container 样式保持不变 */
+.intro-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--space-black);
+    overflow: hidden;
+}
