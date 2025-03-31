@@ -104,6 +104,7 @@
             const introVideo = document.getElementById('introVideo');
             const skipVideoBtn = document.getElementById('skipVideoBtn');
             const virtualTourContainer = document.querySelector('.virtual-tour-container');
+
             
             // 初始状态下隐藏虚拟漫游界面
             virtualTourContainer.style.display = 'none';
@@ -148,6 +149,68 @@
             // 初始化时设置视频尺寸
             introVideo.style.maxWidth = window.innerWidth + 'px';
             introVideo.style.maxHeight = window.innerHeight + 'px';
+            
+            // 模块介绍信息
+            const moduleIntroductions = {
+                tianhe: {
+                    title: "天和核心舱概览",
+                    content: "天和核心舱是中国空间站的主舱，承担着空间站的管理、控制与生命支持功能。它是空间站的指挥中心，配备了航天员的生活区和工作区。天和核心舱内设有多个科研设备，支持各类空间实验。它为航天员提供了充足的生活空间，并确保他们在微重力环境下能够完成任务。核心舱内还装有先进的环境控制系统，维持舱内温度、湿度、气压等条件，保障航天员的身心健康。此外，天和核心舱还负责航天员的长期生活支持，包括空气循环、饮用水供应、食品储存等方面的管理，确保空间站的日常运行和航天员的安全。",
+                    buttonText: "了解详情"
+                },
+                wentian: {
+                    title: "问天实验舱概览",
+                    content: "问天实验舱是中国空间站的主要科研平台之一，专注于生命科学、材料科学等领域的实验。舱内配备了多种实验设备和高科技仪器，可以进行微重力环境下的科学研究。问天实验舱内有专门的生物实验区和材料科学实验区，用于探索植物、动物及材料在太空中的行为变化，推动科学进步。它支持航天员开展生物学、物理学等多学科的实验，研究微重力对生命体和物质的影响，为未来深空探测提供宝贵的实验数据。问天实验舱的设计与天和核心舱紧密配合，确保科学研究与空间站的运作不受干扰。",
+                    buttonText: "了解详情"
+                },
+                mengtian: {
+                    title: "梦天实验舱概览",
+                    content: "梦天实验舱是中国空间站的重要实验舱之一，专注于微重力环境下的高端科学实验。它配备有先进的科研设备和舱外机械臂，支持进行精密的物理、光学等领域的实验。梦天实验舱内的设备可帮助航天员进行量子物理、精密光学、空间物理等复杂实验，推动现代科技的发展。该实验舱还设计了多个高精度实验区域，用于开展需要高度控制环境的实验。梦天实验舱的舱外平台可进行太空环境下的测试，为中国的航天技术和科学研究提供了不可或缺的支持。",
+                    buttonText: "了解详情"
+                },
+                shenzhou: {
+                    title: "神舟飞船概览",
+                    content: "神舟飞船是中国的载人航天飞船，主要用于将航天员从地球送往空间站并返回。它由返回舱、轨道舱和推进舱组成，具备与空间站对接的能力，支持长时间在轨飞行。神舟飞船的返回舱是航天员的工作和生活区域，配备了完整的生命保障系统，确保航天员在飞行中的安全。轨道舱则提供了航天员进行短期科研的空间。推进舱包含飞船的动力系统，负责控制飞行姿态和轨道变换。神舟飞船不仅是中国航天员进入太空的重要工具，也是航天员与空间站之间的连接桥梁。",
+                    buttonText: "了解详情"
+                }
+            };
+            
+            // 为所有模块按钮添加点击事件
+            const moduleButtons = document.querySelectorAll('.module-btn');
+            moduleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const moduleType = this.getAttribute('data-module');
+                    
+                    // 显示模块总览弹窗
+                    if (moduleIntroductions[moduleType]) {
+                        const moduleInfo = moduleIntroductions[moduleType];
+                        popupTitle.textContent = moduleInfo.title;
+                        popupContent.innerHTML = `
+                            <p>${moduleInfo.content}</p>
+                            <button id="showDetailsBtn" class="nav-btn">${moduleInfo.buttonText}</button>
+                        `;
+                        
+                        // 显示弹窗
+                        infoPopup.classList.add('active');
+                        
+                        // 添加"了解详情"按钮点击事件
+                        document.getElementById('showDetailsBtn').addEventListener('click', function() {
+                            // 关闭当前弹窗
+                            infoPopup.classList.remove('active');
+                            
+                            // 切换到相应模块并显示详细信息
+                            // 这里假设switchModule函数在main.js中已定义
+                            if (typeof switchModule === 'function') {
+                                switchModule(moduleType);
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // 关闭弹窗按钮事件
+            closePopup.addEventListener('click', function() {
+                infoPopup.classList.remove('active');
+            });
         });
     </script>
 </body>
