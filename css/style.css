@@ -494,3 +494,10 @@ body {
     background-color: var(--space-black);
     overflow: hidden;
 }
+
+/* 弹窗内按钮居中样式 */
+.info-popup button {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}

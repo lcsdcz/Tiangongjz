@@ -470,6 +470,7 @@ const tourData = {
     }
 };
 
+
 // 数据结构说明：
 // 1. tourData是主对象，包含四个子对象，分别对应四个舱段
 // 2. 每个舱段对象包含name(名称)、description(描述)和panoramas(全景图数组)
