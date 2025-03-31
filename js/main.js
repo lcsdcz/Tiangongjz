@@ -436,7 +436,10 @@ function startGuidedTour() {
         {module: 'wentian', panorama: 0, hotspot: 0, description: "我们现在来到问天实验舱，这是主要的科研平台，支持多种科学实验。"},
         {module: 'wentian', panorama: 1, hotspot: 0, description: "这是生物实验区，研究微重力环境下的生物生长和适应机制。"},
         {module: 'mengtian', panorama: 0, hotspot: 1, description: "这是梦天实验舱，专注于高精度科学实验和舱外操作。"},
-        {module: 'shenzhou', panorama: 0, hotspot: 0, description: "最后我们参观神舟飞船，这是航天员往返空间站的交通工具，也是紧急返回地球的生命保障。"}
+        {module: 'shenzhou', panorama: 0, hotspot: 0, description: "最后我们参观神舟飞船，这是航天员往返空间站的交通工具，也是紧急返回地球的生命保障。"},
+        {module: 'tianzhou', panorama: 0, hotspot: 0, description: "现在我们参观天舟货运飞船，它负责将物资、设备以及补给送往中国空间站，支持航天员的长期工作和生活。"},
+        {module: 'tianzhou', panorama: 1, hotspot: 0, description: "这是天舟货运飞船的货舱，装载着空间站所需的物资和实验设备。"},
+        {module: 'tianzhou', panorama: 2, hotspot: 1, description: "这是天舟货运飞船的推进舱，装载推进剂，可以为空间站提供轨道维持和姿态控制所需的动力。"}
     ];
     
     // 运行引导式导览
