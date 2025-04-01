@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <style>
+  .module::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .module:hover::after {
+    opacity: 1;
+  }
+  
+  .module.wentian::after {
+    background-image: url('wentian.png');
+  }
+  
+  .module.shenzhou::after {
+    background-image: url('shenzhou.png');
+  }
+  
+  .module.tianhe::after {
+    background-image: url('tianhe.png');
+  }
+  
+  .module.tianzhou::after {
+    background-image: url('tianzhou.png');
+  }
+  
+  .module.mengtian::after {
+    background-image: url('mengtian.png');
+  }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>天宫空间站模块高亮效果</title>
@@ -30,101 +68,161 @@
       position: absolute;
       cursor: pointer;
       transition: all 0.3s ease;
-    }
-
-    .module:hover {
-      opacity: 0.8; /* 鼠标悬停时使模块变得稍微透明 */
+      background-color: transparent;
     }
 
     /* 定义各个模块区域的位置和大小 - 位置坐标相对于背景图片 */
     .module.wentian {
-      top: calc(337px / 2);  /* 751.5中心点Y坐标的一半 */
-      left: calc(751.5px / 2);  /* 751.5中心点X坐标的一半 */
-      width: calc(614px / 2);  /* 614宽度的一半 */
-      height: calc(1251px / 2);  /* 1251高度的一半 */
-      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
-      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
-    }
-    
-    .module.wentian:hover {
-      background-image: url('wentian.png'); /* 替换为问天实验舱的高亮图 */
-      background-size: contain; /* 确保图片完全显示在区域内 */
-      background-position: center; /* 居中显示图片 */
-      background-repeat: no-repeat; /* 防止图片重复 */
-      background-color: transparent;
+      top: calc(350px / 2);  /* 保持中心点位置 */
+      left: calc(990px / 2);
+      width: calc(614px * 1.1);  /* 面积减半，边长缩小 */
+      height: calc(1251px * 1.1);
+      transform: translate(-50%, -50%);
     }
 
     .module.shenzhou {
-      top: calc(794px / 2);  /* 794中心点Y坐标的一半 */
-      left: calc(1085px / 2);  /* 1085中心点X坐标的一半 */
-      width: calc(360px / 2);  /* 360宽度的一半 */
-      height: calc(734px / 2);  /* 734高度的一半 */
-      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
-      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
-    }
-    
-    .module.shenzhou:hover {
-      background-image: url('shenzhou.png'); /* 替换为神舟飞船的高亮图 */
-      background-size: contain; /* 确保图片完全显示在区域内 */
-      background-position: center; /* 居中显示图片 */
-      background-repeat: no-repeat; /* 防止图片重复 */
-      background-color: transparent;
+      top: calc(820px / 2);
+      left: calc(1300px / 2);
+      width: calc(360px * 1.1);
+      height: calc(734px * 1.1);
+      transform: translate(-50%, -50%);
     }
 
     .module.tianhe {
-      top: calc(488px / 2);  /* 488中心点Y坐标的一半 */
-      left: calc(1390px / 2);  /* 1390中心点X坐标的一半 */
-      width: calc(402px / 2);  /* 402宽度的一半 */
-      height: calc(720px / 2);  /* 720高度的一半 */
-      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
-      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
-    }
-    
-    .module.tianhe:hover {
-      background-image: url('tianhe.png'); /* 替换为天和核心舱的高亮图 */
-      background-size: contain; /* 确保图片完全显示在区域内 */
-      background-position: center; /* 居中显示图片 */
-      background-repeat: no-repeat; /* 防止图片重复 */
-      background-color: transparent;
+      top: calc(500px / 2);
+      left: calc(1600px / 2);
+      width: calc(402px * 1);
+      height: calc(720px * 1);
+      transform: translate(-50%, -50%);
     }
 
     .module.tianzhou {
-      top: calc(251px / 2);  /* 251中心点Y坐标的一半 */
-      left: calc(1799px / 2);  /* 1799中心点X坐标的一半 */
-      width: calc(196px / 2);  /* 196宽度的一半 */
-      height: calc(376px / 2);  /* 376高度的一半 */
-      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
-      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
-    }
-    
-    .module.tianzhou:hover {
-      background-image: url('tianzhou.png'); /* 替换为天舟货运飞船的高亮图 */
-      background-size: contain; /* 确保图片完全显示在区域内 */
-      background-position: center; /* 居中显示图片 */
-      background-repeat: no-repeat; /* 防止图片重复 */
-      background-color: transparent;
+      top: calc(260px / 2);
+      left: calc(2050px / 2);
+      width: calc(196px * 1.1);
+      height: calc(376px * 1.1);
+      transform: translate(-50%, -50%);
     }
 
     .module.mengtian {
-      top: calc(934.5px / 2);  /* 934.5中心点Y坐标的一半 */
-      left: calc(1717.5px / 2);  /* 1717.5中心点X坐标的一半 */
-      width: calc(949px / 2);  /* 949宽度的一半 */
-      height: calc(1309px / 2);  /* 1309高度的一半 */
-      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
-      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+      top: calc(950px / 2);
+      left: calc(1950px / 2);
+      width: calc(949px * 0.707);  /* 定位区域宽度缩小到原来的10% */
+      height: calc(1309px * 0.707);  /* 定位区域高度缩小到原来的10% */
+      transform: translate(-50%, -50%);
     }
-    
-    .module.mengtian:hover {
-      background-image: url('mengtian.png'); /* 替换为梦天实验舱的高亮图 */
-      background-size: contain; /* 确保图片完全显示在区域内 */
-      background-position: center; /* 居中显示图片 */
-      background-repeat: no-repeat; /* 防止图片重复 */
-      background-color: transparent;
-    }
+    /* 禁用原来的热点区域（不响应鼠标事件） */
+.module.mengtian {
+  pointer-events: none;
+}
+.module.wentian {
+  pointer-events: none;
+}
+.module.tianhe {
+  pointer-events: none;
+}
+.module.shenzhou {
+  pointer-events: none;
+}
+.module.tianzhou {
+  pointer-events: none;
+}
+/* 新增一个小的热点区域，中心不变，大小为原来的0.1倍 */
+.module.mengtian-small {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  top: calc(950px / 2);
+  left: calc(1950px / 2);
+  width: calc(949px * 0.2); /* 新区域缩小为原来的0.1倍 */
+  height: calc(1309px * 0.2); /* 新区域缩小为原来的0.1倍 */
+  transform: translate(-50%, -50%);
+
+  background-color:transparent;
+}
+
+/* 当鼠标悬停在小热点上时，触发原来的高亮效果 */
+.module.mengtian-small:hover + .module.mengtian::after {
+  opacity: 1;
+}
+.module.wentian-small {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  top: calc(337px / 2);  /* 保持中心点位置 */
+      left: calc(1200px / 2);
+      width: calc(614px * 0.15);  /* 面积减半，边长缩小 */
+      height: calc(1251px * 0.15);
+  transform: translate(-50%, -50%);
+
+  background-color:transparent;
+}
+
+/* 当鼠标悬停在小热点上时，触发原来的高亮效果 */
+.module.wentian-small:hover + .module.wentian::after {
+  opacity: 1;
+}
+.module.tianhe-small {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  top: calc(500px / 2);
+  left: calc(1600px / 2);
+  width: calc(949px * 0.1); /* 新区域缩小为原来的0.1倍 */
+  height: calc(1309px * 0.1); /* 新区域缩小为原来的0.1倍 */
+  transform: translate(-50%, -50%);
+
+  background-color:transparent;
+}
+
+/* 当鼠标悬停在小热点上时，触发原来的高亮效果 */
+.module.tianhe-small:hover + .module.tianhe::after {
+  opacity: 1;
+}
+.module.shenzhou-small {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  top: calc(820px / 2);
+  left: calc(1300px / 2);
+  width: calc(949px * 0.2); /* 新区域缩小为原来的0.1倍 */
+  height: calc(1309px * 0.1); /* 新区域缩小为原来的0.1倍 */
+  transform: translate(-50%, -50%);
+
+  background-color:transparent;
+}
+
+/* 当鼠标悬停在小热点上时，触发原来的高亮效果 */
+.module.shenzhou-small:hover + .module.shenzhou::after {
+  opacity: 1;
+}
+.module.tianzhou-small {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  top: calc(251px / 2);
+  left: calc(2000px / 2);
+  width: calc(949px * 0.1); /* 新区域缩小为原来的0.1倍 */
+  height: calc(1309px * 0.1); /* 新区域缩小为原来的0.1倍 */
+  transform: translate(-50%, -50%);
+
+  background-color:transparent;
+}
+
+/* 当鼠标悬停在小热点上时，触发原来的高亮效果 */
+.module.tianzhou-small:hover + .module.tianzhou::after {
+  opacity: 1;
+}
   </style>
 </head>
 <body>
-
+  <div style="display: none;">
+    <img src="wentian.png" alt="">
+    <img src="shenzhou.png" alt="">
+    <img src="tianhe.png" alt="">
+    <img src="tianzhou.png" alt="">
+    <img src="mengtian.png" alt="">
+  </div>
   <div class="container">
     <div class="module tianhe" title="天和核心舱"></div>
     <div class="module shenzhou" title="神舟飞船"></div>
@@ -132,6 +230,41 @@
     <div class="module wentian" title="问天实验舱"></div>
     <div class="module mengtian" title="梦天实验舱"></div>
   </div>
+  <!-- 新增的热点区域：mengtian-small -->
+<div class="module mengtian-small" title="梦天热点（缩小版）"></div>
 
+<!-- 原来的 mengtian 保留位置但禁用 -->
+<div class="module mengtian" title="梦天实验舱"></div>
+
+  <!-- 新增的热点区域：wentian-small -->
+  <div class="module wentian-small" title="问天热点（缩小版）"></div>
+
+  <!-- 原来的 wentian 保留位置但禁用 -->
+  <div class="module wentian" title="问天实验舱"></div>
+
+   <!-- 新增的热点区域：tianhe-small -->
+   <div class="module tianhe-small" title="天和热点（缩小版）"></div>
+
+   <!-- 原来的 tianhe 保留位置但禁用 -->
+   <div class="module tianhe" title="天和核心舱"></div>
+
+   
+   <!-- 新增的热点区域：shenzhou-small -->
+   <div class="module shenzhou-small" title="神舟热点（缩小版）"></div>
+
+   <!-- 原来的 shenzhou 保留位置但禁用 -->
+   <div class="module shenzhou" title="神舟飞船"></div>
+
+      <!-- 新增的热点区域：tianzhou-small -->
+      <div class="module tianzhou-small" title="天舟热点（缩小版）"></div>
+
+      <!-- 原来的 tianzhou 保留位置但禁用 -->
+      <div class="module tianzhou" title="天舟货运飞船"></div>
+   
+ 
+  
+
+
+  
 </body>
 </html>
