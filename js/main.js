@@ -287,13 +287,35 @@ function setupKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
             nextPanorama(); // 右箭头键 - 下一个全景图
+            setTimeout(() => {
+                // 0.1秒后允许再次按键
+            }, 100); // 设置为0.1秒延迟
         } else if (e.key === 'ArrowLeft') {
             prevPanorama(); // 左箭头键 - 上一个全景图
+            setTimeout(() => {
+                // 0.1秒后允许再次按键
+            }, 100); // 设置为0.1秒延迟
         } else if (e.key === 'Escape') {
             infoPopup.classList.remove('active'); // ESC键 - 关闭弹窗
+        } else if (e.key === 'f' || e.key === 'F') {
+            toggleFullscreen(); // F键 - 切换全屏
+        } else if (e.key === 'r' || e.key === 'R') {
+            toggleRotation(); // R键 - 切换自动旋转
+        } else if (e.key === 'h' || e.key === 'H') {
+            showTourHelp(); // H键 - 显示帮助
+        } else if (e.key === 'g' || e.key === 'G') {
+            startGuidedTour(); // G键 - 开始导览
+        } else if (e.key >= '1' && e.key <= '5') {
+            // 数字键1-5切换不同模块
+            const moduleKeys = ['tianhe', 'wentian', 'mengtian', 'shenzhou', 'tianzhou'];
+            const moduleIndex = parseInt(e.key) - 1;
+            if (moduleIndex < moduleKeys.length) {
+                switchModule(moduleKeys[moduleIndex]);
+            }
         }
     });
 }
+
 /**
  * 设置鼠标点击功能，绑定"上一个"和"下一个"按钮的点击事件
  */
@@ -407,6 +429,7 @@ function showTourHelp() {
             <li>"开始导览"按钮将开始一次有引导的空间站参观</li>
             <li>"自动旋转"按钮将自动切换不同场景</li>
             <li>"全屏模式"按钮可以进入全屏浏览体验</li>
+            <li>键盘快捷键：左右箭头切换场景，ESC关闭弹窗，F全屏，R自动旋转，H帮助，G开始导览，1-5切换模块</li>
         </ul>
         <p>享受您的太空之旅！</p>
     `;
