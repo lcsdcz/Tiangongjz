@@ -505,3 +505,53 @@ html, body {
     margin: 0 auto;
     text-align: center;
 }
+.module {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+  }
+  
+  /* 每个模块的热点区域 */
+  .module::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;  /* 初始透明度为 0 */
+    transition: opacity 0.3s ease-in-out;  /* 淡入效果 */
+    pointer-events: none;
+    z-index: 2;  /* 确保高亮图层显示在模块上面 */
+  }
+  
+  /* 定义每个模块的高亮图片 */
+  .module.wentian::after {
+    background-image: url('wentian.png');
+  }
+  
+  .module.shenzhou::after {
+    background-image: url('shenzhou.png');
+  }
+  
+  .module.tianhe::after {
+    background-image: url('tianhe.png');
+  }
+  
+  .module.tianzhou::after {
+    background-image: url('tianzhou.png');
+  }
+  
+  .module.mengtian::after {
+    background-image: url('mengtian.png');
+  }
+  
+  /* Hover 时图片淡入 */
+  .module:hover::after {
+    opacity: 1;  /* Hover 后逐渐显示图片 */
+  }
+  
