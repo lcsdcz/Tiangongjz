@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天宫空间站模块高亮效果</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 1280px;  /* 设置背景图的宽度为2560的一半，保持比例 */
+      height: 720px; /* 设置背景图的高度为1440的一半，保持比例 */
+      background-image: url('images/tiangong-station.jpg'); /* 这里替换为原始背景图路径 */
+      background-size: cover;
+      border: 2px solid #ccc;
+      overflow: hidden; /* 防止模块超出容器边界 */
+    }
+
+    /* 每个模块的热点区域 */
+    .module {
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .module:hover {
+      opacity: 0.8; /* 鼠标悬停时使模块变得稍微透明 */
+    }
+
+    /* 定义各个模块区域的位置和大小 - 位置坐标相对于背景图片 */
+    .module.wentian {
+      top: calc(337px / 2);  /* 751.5中心点Y坐标的一半 */
+      left: calc(751.5px / 2);  /* 751.5中心点X坐标的一半 */
+      width: calc(614px / 2);  /* 614宽度的一半 */
+      height: calc(1251px / 2);  /* 1251高度的一半 */
+      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
+      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+    }
+    
+    .module.wentian:hover {
+      background-image: url('wentian.png'); /* 替换为问天实验舱的高亮图 */
+      background-size: contain; /* 确保图片完全显示在区域内 */
+      background-position: center; /* 居中显示图片 */
+      background-repeat: no-repeat; /* 防止图片重复 */
+      background-color: transparent;
+    }
+
+    .module.shenzhou {
+      top: calc(794px / 2);  /* 794中心点Y坐标的一半 */
+      left: calc(1085px / 2);  /* 1085中心点X坐标的一半 */
+      width: calc(360px / 2);  /* 360宽度的一半 */
+      height: calc(734px / 2);  /* 734高度的一半 */
+      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
+      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+    }
+    
+    .module.shenzhou:hover {
+      background-image: url('shenzhou.png'); /* 替换为神舟飞船的高亮图 */
+      background-size: contain; /* 确保图片完全显示在区域内 */
+      background-position: center; /* 居中显示图片 */
+      background-repeat: no-repeat; /* 防止图片重复 */
+      background-color: transparent;
+    }
+
+    .module.tianhe {
+      top: calc(488px / 2);  /* 488中心点Y坐标的一半 */
+      left: calc(1390px / 2);  /* 1390中心点X坐标的一半 */
+      width: calc(402px / 2);  /* 402宽度的一半 */
+      height: calc(720px / 2);  /* 720高度的一半 */
+      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
+      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+    }
+    
+    .module.tianhe:hover {
+      background-image: url('tianhe.png'); /* 替换为天和核心舱的高亮图 */
+      background-size: contain; /* 确保图片完全显示在区域内 */
+      background-position: center; /* 居中显示图片 */
+      background-repeat: no-repeat; /* 防止图片重复 */
+      background-color: transparent;
+    }
+
+    .module.tianzhou {
+      top: calc(251px / 2);  /* 251中心点Y坐标的一半 */
+      left: calc(1799px / 2);  /* 1799中心点X坐标的一半 */
+      width: calc(196px / 2);  /* 196宽度的一半 */
+      height: calc(376px / 2);  /* 376高度的一半 */
+      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
+      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+    }
+    
+    .module.tianzhou:hover {
+      background-image: url('tianzhou.png'); /* 替换为天舟货运飞船的高亮图 */
+      background-size: contain; /* 确保图片完全显示在区域内 */
+      background-position: center; /* 居中显示图片 */
+      background-repeat: no-repeat; /* 防止图片重复 */
+      background-color: transparent;
+    }
+
+    .module.mengtian {
+      top: calc(934.5px / 2);  /* 934.5中心点Y坐标的一半 */
+      left: calc(1717.5px / 2);  /* 1717.5中心点X坐标的一半 */
+      width: calc(949px / 2);  /* 949宽度的一半 */
+      height: calc(1309px / 2);  /* 1309高度的一半 */
+      transform: translate(-50%, -50%); /* 使中心点位于指定坐标 */
+      background-color: rgba(255, 255, 255, 0.5); /* 默认高亮效果 */
+    }
+    
+    .module.mengtian:hover {
+      background-image: url('mengtian.png'); /* 替换为梦天实验舱的高亮图 */
+      background-size: contain; /* 确保图片完全显示在区域内 */
+      background-position: center; /* 居中显示图片 */
+      background-repeat: no-repeat; /* 防止图片重复 */
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="module tianhe" title="天和核心舱"></div>
+    <div class="module shenzhou" title="神舟飞船"></div>
+    <div class="module tianzhou" title="天舟货运飞船"></div>
+    <div class="module wentian" title="问天实验舱"></div>
+    <div class="module mengtian" title="梦天实验舱"></div>
+  </div>
+
+</body>
+</html>
