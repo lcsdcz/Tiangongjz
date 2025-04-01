@@ -16,12 +16,16 @@
     box-sizing: border-box;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
-body {
-    color: var(--dark);
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: var(--space-black);
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    background-image: url('bgstar.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .container {
@@ -35,7 +39,7 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: var(--space-black);
+    background-color: transparent;  /* 将黑色背景改为透明 */
     overflow: hidden;
 }
 
@@ -236,7 +240,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--space-black);
+    background-color: var(--space-black);  /* 保持封面的黑色背景 */
     color: var(--light);
     display: flex;
     flex-direction: column;
@@ -244,9 +248,9 @@ body {
     justify-content: center;
     z-index: 50;
     transition: opacity 1s ease;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/ui/stars-bg.jpg');
     background-size: cover;
 }
+
 
 .launch-screen h1 {
     font-size: 3.5rem;
