@@ -57,6 +57,10 @@
                 <!-- active类表示当前选中的模块 -->
  
                 <button class="module-btn active" data-module="tianhe">天和核心舱</button>
+                <button class="module-btn" onclick="window.location.href='wentian.html'">问天实验舱</button>
+                <button class="module-btn" onclick="window.location.href='mengtian.html'">梦天实验舱</button>
+                <button class="module-btn" onclick="window.location.href='shenzhou.html'">神舟飞船</button>
+                <button class="module-btn" onclick="window.location.href='tianzhou.html'">天舟货运飞船</button>
 
             </div>
             
@@ -119,16 +123,6 @@
                 location.href = 'test.html';
             });
             
-            // 帮助弹窗打开
-            document.getElementById('helpBtn').addEventListener('click', function() {
-                document.getElementById('helpPopup').classList.add('active');
-            });
-            
-            // 帮助弹窗关闭
-            document.getElementById('closeHelpPopup').addEventListener('click', function() {
-                document.getElementById('helpPopup').classList.remove('active');
-            });
-            
             // 全屏模式逻辑
             document.getElementById('fullscreenBtn').addEventListener('click', function() {
                 const elem = document.documentElement;
@@ -152,18 +146,5 @@
 <!-- 左上角导航栏 -->
 <div class="top-nav">
     <button id="fullscreenBtn">全屏模式</button>
-    <button id="helpBtn">帮助</button>
-</div>
-<!-- 帮助信息弹窗 -->
-<div class="info-popup" id="helpPopup">
-    <button class="close-btn" id="closeHelpPopup">×</button>
-    <h3>帮助说明</h3>
-    <div>
-        <p>🔍 点击热点图标可查看详细信息</p>
-        <p>⬅️ ➡️ 使用"上一个 / 下一个"按钮切换全景</p>
-        <p>🧭 使用模块切换器浏览不同舱段</p>
-        <p>🖥️ 点击"全屏模式"进入沉浸式体验</p>
-        <p>⌨️ 键盘快捷键：左右箭头切换场景，ESC关闭弹窗，F全屏</p>
-    </div>
 </div>
 </html>
