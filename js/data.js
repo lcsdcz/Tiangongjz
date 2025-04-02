@@ -48,7 +48,7 @@ const tourData = {
             {
                 id: "tianhe-work", // 工作区全景图
                 name: "工作区",
-                image: "images/panoramas/tianhe-work.jpg",
+                image: "images/panoramas/tianhe-work.jpeg",
                 description: "天和核心舱的工作区域，位于大柱段内，配备了先进的控制系统和科研设备。",
                 hotspots: [
                     {
@@ -80,7 +80,7 @@ const tourData = {
             {
                 id: "tianhe-living", // 生活区全景图
                 name: "生活区",
-                image: "images/panoramas/tianhe-living.jpg",
+                image: "images/panoramas/tianhe-living.png",
                 description: "位于小柱段内侧的生活区，包括3个卧室、1个卫生间和航天员日常活动区域。",
                 hotspots: [
                     {
@@ -90,29 +90,17 @@ const tourData = {
                         content: "航天员的私人睡眠空间，小柱段内共有3个独立卧室，每个航天员都有独立的睡眠舱，配备睡袋、个人物品存放处和小型娱乐设备，提供必要的隐私和休息环境。"
                     },
                     {
-                        x: 70,
-                        y: 35,
-                        title: "餐饮区",
-                        content: "航天员用餐的区域，配备食品储存柜、加热设备和特制餐具，可供航天员享用各种太空食品，包括中国传统食品和国际美食。"
-                    },
-                    {
                         x: 50,
-                        y: 70,
+                        y: 55,
                         title: "健身设备",
                         content: "为抵抗微重力环境对人体的负面影响，空间站配备了专业健身设备，如跑步机和阻力训练器，航天员每天都要进行规定的锻炼计划。"
                     },
                     {
-                        x: 20,
+                        x: 80,
                         y: 60,
                         title: "卫生间",
                         content: "航天员进行个人清洁的区域，包括特殊设计的太空淋浴系统、牙刷站和太空厕所，所有设备都经过专门设计，适合微重力环境使用，确保航天员保持良好的卫生条件。"
                     },
-                    {
-                        x: 80,
-                        y: 50,
-                        title: "休闲娱乐区",
-                        content: "航天员放松休息的区域，配备电子阅读设备、音乐播放器和视频通话设备，帮助航天员在繁忙的工作之余放松身心，与地球的家人朋友保持联系。"
-                    }
                 ]
             }
         ]
@@ -466,20 +454,20 @@ const tourData = {
                 description: "天舟货运飞船的内部全景视图，展示了货舱、对接舱和能源系统。",
                 hotspots: [
                     {
-                        x: 35,
-                        y: 45,
+                        x: 52,
+                        y: 40,
                         title: "货舱",
                         content: "货舱用于运输和存储物资，包括食物、设备、实验材料等，确保空间站的正常运行。",
                     },
                     {
-                        x: 60,
-                        y: 25,
+                        x: 22,
+                        y: 32,
                         title: "对接舱",
                         content: "天舟货运飞船的对接舱与空间站对接，确保物资运输过程中安全可靠。",
                     },
                     {
-                        x: 70,
-                        y: 40,
+                        x: 80,
+                        y: 50,
                         title: "推进舱",
                         content: "推进舱负责控制飞船的轨道调整和机动，确保顺利对接与离开空间站。",
                     }
