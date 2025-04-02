@@ -64,6 +64,8 @@ function updateView() {
     
     // 更新背景图片 - 设置全景图为背景
     tourView.style.backgroundImage = `url(${panorama.image})`;
+    tourView.style.backgroundSize = 'cover'; // 确保图片覆盖整个视图区域
+    tourView.style.backgroundPosition = 'center'; // 图片居中显示
     
     // 更新信息面板 - 显示当前位置和描述
     currentLocation.textContent = `当前位置: ${module.name} - ${panorama.name}`;
@@ -358,6 +360,9 @@ function updateView() {
     
     // 更新背景图片 - 设置全景图为背景
     tourView.style.backgroundImage = `url(${panorama.image})`;
+    tourView.style.backgroundSize = 'cover'; // 确保图片覆盖整个视图区域
+    tourView.style.backgroundPosition = 'center'; // 图片居中显示
+    tourView.style.backgroundRepeat = 'no-repeat'; // 防止图片重复
     
     // 更新信息面板 - 显示当前位置和描述
     currentLocation.textContent = `当前位置: ${module.name} - ${panorama.name}`;
