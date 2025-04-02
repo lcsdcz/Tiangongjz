@@ -16,29 +16,6 @@
     
 </head>
 <body>
-    <!-- 启动屏幕 - 用户首次访问时显示的欢迎界面 -->
-    <div class="launch-screen" id="launchScreen">
-        <!-- 加载动画，可以在js/main.js中控制显示/隐藏 -->
-        <div class="loading-animation"></div>
-        <h1>天宫空间站</h1>
-        <p>360°互动虚拟漫游体验</p>
-        <p>准备踏上探索中国空间站的奇妙旅程，通过这个互动体验，您将能够身临其境地参观天和核心舱、问天实验舱、梦天实验舱、神舟飞船、天舟货运飞船，了解中国航天员的工作与生活环境。</p>
-        <!-- 开始按钮，点击后会播放介绍视频，然后显示主界面 -->
-        <button class="start-btn" id="startBtn">开始探索</button>
-    </div>
-
-    <!-- 介绍视频容器 - 点击开始按钮后显示 -->
-    <div class="intro-video-container" id="introVideoContainer" style="display: none;">
-        <video id="introVideo" class="intro-video" width="100%" height="100%" style="object-fit: contain; max-width: 100%; max-height: 100%;">
-            <!-- 视频文件地址：位于项目根目录下的videos文件夹中的tiangong-intro.mp4文件 -->
-            <source src="videos/tiangong-intro.mp4" type="video/mp4">
-            您的浏览器不支持视频标签。
-        </video>
-        <!-- 可选：添加跳过视频按钮 -->
-        <button class="skip-video-btn" id="skipVideoBtn">跳过视频</button>
-    </div>
-
-
     <!-- 主虚拟漫游容器 - 包含全景图和所有交互元素 -->
     <div class="virtual-tour-container">
         <!-- 全景图显示区域 - 背景图片会通过JavaScript动态设置 -->
@@ -91,6 +68,12 @@
                 <p id="locationDescription">中国空间站的管理与控制中心，为航天员提供生活区域和工作平台。</p>
             </div>
         </div>
+        
+        <!-- 梦天实验舱部分 -->
+        <div id="mengtian" style="display: none;">
+            <h2>梦天实验舱</h2>
+            <p>这里是梦天实验舱的详细介绍内容...</p>
+        </div>
     </div>
 
 
@@ -99,60 +82,13 @@
     <script src="js/data.js"></script>
     <!-- 主要的JavaScript逻辑文件 -->
     <script src="js/main.js"></script>
-    <!-- 视频播放相关的JavaScript代码 -->
+    <!-- 页面加载相关的JavaScript代码 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const startBtn = document.getElementById('startBtn');
-            const launchScreen = document.getElementById('launchScreen');
-            const introVideoContainer = document.getElementById('introVideoContainer');
-            const introVideo = document.getElementById('introVideo');
-            const skipVideoBtn = document.getElementById('skipVideoBtn');
             const virtualTourContainer = document.querySelector('.virtual-tour-container');
-
             
-            // 初始状态下隐藏虚拟漫游界面
-            virtualTourContainer.style.display = 'none';
-            
-            // 点击开始按钮
-            startBtn.addEventListener('click', function() {
-                // 隐藏启动屏幕
-                launchScreen.style.display = 'none';
-                // 显示视频容器
-                introVideoContainer.style.display = 'block';
-                // 播放视频
-                introVideo.play();
-                
-                // 视频播放结束后显示主界面
-                introVideo.addEventListener('ended', showMainInterface);
-            });
-            
-            // 点击跳过视频按钮
-            skipVideoBtn.addEventListener('click', function() {
-                introVideo.pause();
-                showMainInterface();
-            });
-            
-            // 显示主界面函数
-            function showMainInterface() {
-                // 隐藏视频容器
-                introVideoContainer.style.display = 'none';
-                // 显示虚拟漫游界面
-                virtualTourContainer.style.display = 'block';
-                // 可能需要初始化虚拟漫游的代码，如果main.js中没有自动处理的话
-            }
-            
-            // 窗口大小改变时调整视频尺寸
-            window.addEventListener('resize', function() {
-                if (introVideoContainer.style.display !== 'none') {
-                    // 确保视频适应当前窗口大小
-                    introVideo.style.maxWidth = window.innerWidth + 'px';
-                    introVideo.style.maxHeight = window.innerHeight + 'px';
-                }
-            });
-            
-            // 初始化时设置视频尺寸
-            introVideo.style.maxWidth = window.innerWidth + 'px';
-            introVideo.style.maxHeight = window.innerHeight + 'px';
+            // 直接显示虚拟漫游界面
+            virtualTourContainer.style.display = 'block';
             
             // 模块介绍信息
             const moduleIntroductions = {
@@ -207,9 +143,23 @@
                             infoPopup.classList.remove('active');
                             
                             // 切换到相应模块并显示详细信息
-                            // 这里假设switchModule函数在main.js中已定义
                             if (typeof switchModule === 'function') {
                                 switchModule(moduleType);
+                                
+                                // 更新模块按钮的激活状态
+                                moduleButtons.forEach(btn => {
+                                    btn.classList.remove('active');
+                                    if (btn.getAttribute('data-module') === moduleType) {
+                                        btn.classList.add('active');
+                                    }
+                                });
+                                
+                                // 如果是梦天实验舱，显示其详细内容
+                                if (moduleType === 'mengtian') {
+                                    document.getElementById('mengtian').style.display = 'block';
+                                } else {
+                                    document.getElementById('mengtian').style.display = 'none';
+                                }
                             }
                         });
                     }
@@ -218,7 +168,40 @@
             
             // 关闭弹窗按钮事件
             closePopup.addEventListener('click', function() {
+                // 获取当前显示的模块类型
+                const currentModuleTitle = popupTitle.textContent;
+                let moduleType = '';
+                
+                // 根据标题确定模块类型
+                for (const [key, info] of Object.entries(moduleIntroductions)) {
+                    if (info.title === currentModuleTitle) {
+                        moduleType = key;
+                        break;
+                    }
+                }
+                
+                // 关闭弹窗
                 infoPopup.classList.remove('active');
+                
+                // 如果找到了对应的模块类型，切换到该模块
+                if (moduleType && typeof switchModule === 'function') {
+                    switchModule(moduleType);
+                    
+                    // 更新模块按钮的激活状态
+                    moduleButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-module') === moduleType) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // 如果是梦天实验舱，显示其详细内容
+                    if (moduleType === 'mengtian') {
+                        document.getElementById('mengtian').style.display = 'block';
+                    } else {
+                        document.getElementById('mengtian').style.display = 'none';
+                    }
+                }
             });
         });
     </script>

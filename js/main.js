@@ -231,10 +231,39 @@ function switchModule(moduleName) {
         }
     });
     
+    // 隐藏所有模块内容
+    hideAllModuleContents();
+    
+    // 显示当前选中的模块内容
+    showModuleContent(moduleName);
+    
     updateView(); // 更新视图
     createPanoramaNav(); // 重新创建导航点
 }
 
+/**
+ * 隐藏所有模块内容
+ * 在切换模块前隐藏所有模块的内容区域
+ */
+function hideAllModuleContents() {
+    // 获取所有模块内容区域
+    const moduleContents = document.querySelectorAll('[id^="tianhe"], [id^="wentian"], [id^="mengtian"], [id^="shenzhou"], [id^="tianzhou"]');
+    moduleContents.forEach(content => {
+        content.style.display = 'none'; // 隐藏所有模块内容
+    });
+}
+
+/**
+ * 显示指定模块的内容
+ * @param {string} moduleName - 模块名称
+ */
+function showModuleContent(moduleName) {
+    // 获取对应模块的内容区域
+    const moduleContent = document.getElementById(moduleName);
+    if (moduleContent) {
+        moduleContent.style.display = 'block'; // 显示当前模块内容
+    }
+}
 
 /**
  * 创建漫游控制面板
@@ -244,19 +273,7 @@ function createTourControls() {
     const tourControls = document.createElement('div'); // 创建控制面板容器
     tourControls.className = 'overlay-element tour-controls'; // 设置样式类
     
-    // 导览按钮 - 开始引导式导览
-    const guidedTourBtn = document.createElement('button');
-    guidedTourBtn.className = 'nav-btn';
-    guidedTourBtn.textContent = '开始导览';
-    guidedTourBtn.addEventListener('click', startGuidedTour);
-    
-    // 自动旋转按钮 - 切换自动旋转状态
-    const rotateBtn = document.createElement('button');
-    rotateBtn.className = 'nav-btn';
-    rotateBtn.id = 'rotateBtn';
-    rotateBtn.textContent = '自动旋转';
-    rotateBtn.addEventListener('click', toggleRotation);
-    
+
     // 全屏按钮 - 切换全屏模式
     const fullscreenBtn = document.createElement('button');
     fullscreenBtn.className = 'nav-btn';
