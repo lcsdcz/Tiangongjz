@@ -191,24 +191,24 @@ const tourData = {
             {
                 id: "shenzhou-overview", // 飞船总览全景图
                 name: "神舟飞船总览",
-                image: "images/panoramas/shenzhou-overview.jpg",
+                image: "images/panoramas/shenzhou-overview.png",
                 description: "神舟载人飞船的内部全景视图，展示了返回舱和轨道舱。",
                 hotspots: [
                     {
-                        x: 30,
+                        x: 55,
                         y: 40,
                         title: "返回舱",
                         content: "飞船的核心部分，也是航天员返回地球时使用的舱段，配备了生命支持系统、控制系统和减速降落装置，确保航天员安全返回地球。"
                     },
                     {
-                        x: 70,
-                        y: 35,
+                        x: 30,
+                        y: 40,
                         title: "轨道舱",
                         content: "航天员在轨期间的主要活动区域，也是进行简单科学实验的场所，配备了生活设施和实验设备，可与空间站对接后作为航天员的额外活动空间。"
                     },
                     {
-                        x: 50,
-                        y: 60,
+                        x: 75,
+                        y: 35,
                         title: "推进舱",
                         content: "飞船的动力系统部分，包含主发动机和姿态控制发动机，负责轨道机动、对接操作和返回地球前的制动，是飞船航行的动力来源。"
                     }
@@ -224,7 +224,7 @@ const tourData = {
                 id: "shenzhou-docking", // 对接机构全景图
                 name: "返回舱外部",
                 image: "images/panoramas/shenzhou-docking.jpeg",
-                description: "神舟飞船与空间站对接的机构和通道，航天员通过此进入空间站。",
+                description: "神舟十三号飞船着陆图像。返回舱配备了热防护系统，使用特殊的热防护材料来抵御再入时产生的高温。舱体表面的热防护层会在高温下发生烧蚀，从而降低热量的传递，同时通过气囊和降落伞系统保证安全着陆。",
 
             }
         ]
