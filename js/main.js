@@ -363,6 +363,9 @@ function updateView() {
     tourView.style.backgroundSize = 'cover'; // 确保图片覆盖整个视图区域
     tourView.style.backgroundPosition = 'center'; // 图片居中显示
     tourView.style.backgroundRepeat = 'no-repeat'; // 防止图片重复
+    tourView.style.width = '100%'; // 设置宽度为100%
+    tourView.style.height = '100vh'; // 设置高度为视口高度
+    tourView.style.objectFit = 'contain'; // 确保图片完整显示
     
     // 更新信息面板 - 显示当前位置和描述
     currentLocation.textContent = `当前位置: ${module.name} - ${panorama.name}`;
