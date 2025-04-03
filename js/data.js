@@ -218,12 +218,12 @@ const tourData = {
                 id: "shenzhou-return", // 返回舱内部全景图
                 name: "返回舱内部",
                 image: "images/panoramas/shenzhou-return.jpg",
-                description: "神舟飞船返回舱的内部视图，展示了航天员座椅和控制面板。",
+                description: "神舟飞船返回舱的内部视图，展示了航天员座椅和控制面板。（为模型图）",
             },
             {
                 id: "shenzhou-docking", // 对接机构全景图
                 name: "返回舱外部",
-                image: "images/panoramas/shenzhou-docking.jpg",
+                image: "images/panoramas/shenzhou-docking.jpeg",
                 description: "神舟飞船与空间站对接的机构和通道，航天员通过此进入空间站。",
 
             }
@@ -267,12 +267,12 @@ const tourData = {
                 hotspots: [
                     {
                         x: 40,
-                        y: 50,
+                        y: 45,
                         title: "物资存储区",
                         content: "这里存放着各种用于补给空间站的物资，包括食品、医疗用品、实验设备等。",
                     },
                     {
-                        x: 60,
+                        x: 55,
                         y: 30,
                         title: "装卸通道",
                         content: "装卸通道用于将货物转移到空间站或飞船外部，确保运输过程的顺畅与安全。",
@@ -282,12 +282,6 @@ const tourData = {
                         y: 70,
                         title: "货物固定系统",
                         content: "货物固定系统确保在飞行过程中货物的稳定，防止物资在运输过程中出现移位。",
-                    },
-                    {
-                        x: 75,
-                        y: 40,
-                        title: "紧急设备存储区",
-                        content: "存放紧急情况下需要的设备和补给品，包括备用食品、医疗包和应急工具。",
                     }
                 ]
             },
